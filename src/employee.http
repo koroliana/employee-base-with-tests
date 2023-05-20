@@ -1,0 +1,43 @@
+GET http://localhost:8080/employee/add?name=first&lastname=last&department=5&salary=500
+###
+GET http://localhost:8080/employee/add?name=first&lastname=last&department=5&salary=500
+###
+GET http://localhost:8080/employee/base
+###
+GET http://localhost:8080/department/employees
+###
+GET http://localhost:8080/department/0/employees
+###
+GET http://localhost:8080/department/6/employees
+###
+GET http://localhost:8080/department/dd/employees
+###
+GET http://localhost:8080/department/g/salary/min
+###
+GET http://localhost:8080/department/4/salary/min
+###
+GET http://localhost:8080/department/3/salary/min
+###
+GET http://localhost:8080/department/3/salary/max
+###
+GET http://localhost:8080/department/l/salary/max
+###
+GET http://localhost:8080/department/4/salary/min
+###
+GET http://localhost:8080/department/f/salary/sum
+###
+GET http://localhost:8080/department/3/salary/sum
+###
+GET http://localhost:8080/department/1/salary/sum
+###
+GET http://localhost:8080/employee/find?name=Елена&lastname=Тышко
+###
+GET http://localhost:8080/employee/add?name=Елена&lastname=Тышко&department=3&salary=80000
+###
+GET http://localhost:8080/employee/add?name=Еле&lastname=Тышко&department=3&salary=8
+###
+GET http://localhost:8080/employee/delete?name=first&lastname=last
+###
+GET http://localhost:8080/employee/add?name=рыбка&lastname=поньо&department=3&salary=800
+###
+GET http://localhost:8080/employee/add?name=yep&lastname=yoyou&department=2&salary=-5
