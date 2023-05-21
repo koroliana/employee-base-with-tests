@@ -7,6 +7,7 @@ import pro.sky.employee_base_with_tests.exception.DepartmentNotFoundException;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
     public class DepartmentService {
@@ -21,8 +22,11 @@ import java.util.Map;
         }
 
         public List<Employee> getDepartmentBase(int department) {
-            return employeeService.getDepartmentBase(department);
-            }
+            return employeeService.getEmployeeList().stream()
+                    .filter(employee -> employee.getDepartment()==department)
+                    .collect(Collectors.toList());
+            //TODO как тут выбросить исключение, если нет?
+        }
 
         public Integer findMinDepartmentSalary(int department) {
                 Employee minDepartmentSalaryEmployee = employeeService.getEmployeeList().stream()
@@ -42,23 +46,17 @@ import java.util.Map;
 
         }
         public Map<Integer, List <Employee>> getEmployeeBase() {
-            return employeeService.getEmployeeMap();
-        /*
-        Map<Integer, List<Employee>> baseByDepartment = EmployeeBase.getBase().stream()
+        return employeeService.getEmployeeList().stream()
                 .collect(Collectors.groupingBy(Employee::getDepartment));
-        return baseByDepartment.toString();
-
-         */
         }
 
         public int summarizeDepartmentSalaries(int department) {
-                int sum = 0;
-                List<Employee> departmentBase = employeeService.getDepartmentBase(department);
-                for (Employee employee : departmentBase) {
-                    sum = sum + employee.getSalary();
-                }
-                return sum;
+            return employeeService.getEmployeeList().stream()
+                    .filter(e -> e.getDepartment() == department)
+                    .mapToInt(e -> e.getSalary())
+                    .sum();
 
         }
+
 
     }

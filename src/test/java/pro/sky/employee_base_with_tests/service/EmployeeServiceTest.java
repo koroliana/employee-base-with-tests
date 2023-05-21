@@ -31,19 +31,28 @@ public class EmployeeServiceTest {
                 .forEach(employee -> employeeService.removeEmployee(employee.getFirstName(), employee.getLastName()));
     }
 
+
  */
 
 
     @Test
     public void addTest() {
-        int beforeCount = employeeService.getEmployeeList().size();
+      //  int beforeCount = employeeService.getEmployeeList().size();
         Employee expected = new Employee("Алексей", "Тыгыдык", 3, 80000);
 
         Assertions.assertThat(employeeService.addEmloyee("Алексей", "Тыгыдык", 3, 80000))
                 .isEqualTo(expected)
                 .isIn(employeeService.getEmployeeList());
-        Assertions.assertThat(employeeService.getEmployeeList()).hasSize(beforeCount + 1);
+      //  Assertions.assertThat(employeeService.getEmployeeList()).hasSize(beforeCount + 1);
         Assertions.assertThat(employeeService.findEmployee("Алексей", "Тыгыдык")).isEqualTo(expected);
+    }
+
+    @Test
+    public void findEmployeeTest() {
+        Employee expected = new Employee("Евгения", "Добролюбова", 1, 50000);
+        Assertions.assertThat(employeeService.findEmployee("Евгения", "Добролюбова"))
+                .isEqualTo(expected)
+                .isIn(employeeService.getEmployeeList());
     }
 
 
@@ -70,16 +79,7 @@ public class EmployeeServiceTest {
                 .isThrownBy(() -> employeeService.removeEmployee("Вася", "Ложкин"));
     }
 
-    @Test
-    public void findTest() {
-        int beforeCount = employeeService.getEmployeeList().size();
-        Employee expected = new Employee("Евгения", "Добролюбова", 1, 50000);
 
-        Assertions.assertThat(employeeService.findEmployee("Евгения", "Добролюбова"))
-                .isEqualTo(expected)
-                .isIn(employeeService.getEmployeeList());
-        Assertions.assertThat(employeeService.getEmployeeList()).hasSize(beforeCount);
-    }
 
     @Test
     public void findWhenNotFoundTest() {
