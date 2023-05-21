@@ -11,7 +11,7 @@ import java.util.*;
 
 @Service
 public class EmployeeService {
-    private static final int SIZE = 10;
+    private static final int SIZE = 15;
     private static final List<Employee> employeeList = new ArrayList<>();
     private static final Map<Integer, List <Employee>> employeeMap = new HashMap<>();
 
@@ -20,9 +20,12 @@ public class EmployeeService {
     }
 
     public Employee addEmloyee(String firstName, String lastName, int department, int salary) {
+        /*
         if (employeeList.size()+1 > SIZE) {
             throw new EmployeeStorageIsFullException();
         }
+
+         */
             Employee newEmployee = new Employee(firstName, lastName, department, salary);
             for (Employee employee: employeeList) {
                 if (newEmployee.equals(employee)) {
