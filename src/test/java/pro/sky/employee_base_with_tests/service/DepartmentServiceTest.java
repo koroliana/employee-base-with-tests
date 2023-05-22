@@ -2,6 +2,7 @@ package pro.sky.employee_base_with_tests.service;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -47,6 +48,16 @@ public class DepartmentServiceTest {
             )
         );
     }
+
+    /*
+    @Test
+    public void helloTest() {
+        String expected = "Добро пожаловать в базу данных сотрудников. В данном разделе вы можете найти сотрудника с максимальной и минимальной зарплатой в отделе, вывести список всех сотрудников отдела или всех сотрудников по отделам";
+        Assertions.assertThat(departmentService.hello())
+                .isEqualTo(expected);
+    }
+
+     */
 
 
     @ParameterizedTest

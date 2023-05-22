@@ -22,10 +22,15 @@ import java.util.stream.Collectors;
         }
 
         public List<Employee> getDepartmentBase(int department) {
+            employeeService.getEmployeeList().stream()
+                    .filter(e -> e.getDepartment() == department)
+                    .findAny()
+                    .orElseThrow(() -> new DepartmentNotFoundException(department));
+
             return employeeService.getEmployeeList().stream()
                     .filter(employee -> employee.getDepartment()==department)
                     .collect(Collectors.toList());
-            //TODO как тут выбросить исключение, если нет?
+
         }
 
         public Integer findMinDepartmentSalary(int department) {
@@ -51,9 +56,14 @@ import java.util.stream.Collectors;
         }
 
         public int summarizeDepartmentSalaries(int department) {
+            employeeService.getEmployeeList().stream()
+                    .filter(e -> e.getDepartment() == department)
+                    .findAny()
+                    .orElseThrow(() -> new DepartmentNotFoundException(department));
+
             return employeeService.getEmployeeList().stream()
                     .filter(e -> e.getDepartment() == department)
-                    .mapToInt(e -> e.getSalary())
+                    .mapToInt(Employee::getSalary)
                     .sum();
 
         }

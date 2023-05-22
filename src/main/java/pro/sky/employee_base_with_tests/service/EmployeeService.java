@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import pro.sky.employee_base_with_tests.Employee;
 import pro.sky.employee_base_with_tests.exception.EmployeeAlreadyAddedException;
 import pro.sky.employee_base_with_tests.exception.EmployeeNotFoundException;
+import pro.sky.employee_base_with_tests.exception.EmployeeStorageIsFullException;
 
 import java.util.*;
 
@@ -16,12 +17,9 @@ public class EmployeeService {
     }
 
     public Employee addEmloyee(String firstName, String lastName, int department, int salary) {
-        /*
         if (employeeList.size()+1 > SIZE) {
             throw new EmployeeStorageIsFullException();
         }
-
-         */
         String fullName = firstName + " " + lastName;
             Employee newEmployee = new Employee(firstName, lastName, department, salary);
             if(employeeList.stream()

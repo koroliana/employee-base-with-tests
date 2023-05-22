@@ -14,6 +14,7 @@ public class EmployeeServiceTest {
 
     @BeforeEach
     public void beforeEach() {
+        employeeService.getEmployeeList().clear();
         employeeService.addEmloyee("Василий", "Васичкин", 3, 150000);
         employeeService.addEmloyee("Василиса", "Прекрасная", 1, 100000);
         employeeService.addEmloyee("Алексей", "Ермаков", 2, 80000);
@@ -34,16 +35,23 @@ public class EmployeeServiceTest {
 
  */
 
+    @Test
+    public void helloTest() {
+        String expected = "Добро пожаловать в базу данных сотрудников. В данном разделе вы можете добавить, найти, удалить сотрудника или вывести список всех сотрудников";
+        Assertions.assertThat(employeeService.hello())
+                .isEqualTo(expected);
+    }
+
 
     @Test
     public void addTest() {
-      //  int beforeCount = employeeService.getEmployeeList().size();
+        int beforeCount = employeeService.getEmployeeList().size();
         Employee expected = new Employee("Алексей", "Тыгыдык", 3, 80000);
 
         Assertions.assertThat(employeeService.addEmloyee("Алексей", "Тыгыдык", 3, 80000))
                 .isEqualTo(expected)
                 .isIn(employeeService.getEmployeeList());
-      //  Assertions.assertThat(employeeService.getEmployeeList()).hasSize(beforeCount + 1);
+        Assertions.assertThat(employeeService.getEmployeeList()).hasSize(beforeCount + 1);
         Assertions.assertThat(employeeService.findEmployee("Алексей", "Тыгыдык")).isEqualTo(expected);
     }
 
@@ -88,7 +96,7 @@ public class EmployeeServiceTest {
     }
 
     @Test
-    public void getAllTest() {
+    public void getEmployeeListTest() {
         Assertions.assertThat(employeeService.getEmployeeList())
                 .hasSize(8)
                 .containsExactlyInAnyOrder(
@@ -103,7 +111,6 @@ public class EmployeeServiceTest {
                 );
     }
 
-    /*
     @Test
     public void addWhenStorageIsFullTest() {
         Stream.iterate(1, i -> i + 1)
@@ -128,7 +135,5 @@ public class EmployeeServiceTest {
                 .isThrownBy(() -> employeeService.addEmloyee("Пупок", "Пупкин", 10, 100000));
     }
 
-
-     */
 
 }
