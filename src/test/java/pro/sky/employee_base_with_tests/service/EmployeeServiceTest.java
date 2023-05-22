@@ -6,6 +6,7 @@ import pro.sky.employee_base_with_tests.Employee;
 import pro.sky.employee_base_with_tests.exception.EmployeeAlreadyAddedException;
 import pro.sky.employee_base_with_tests.exception.EmployeeNotFoundException;
 import pro.sky.employee_base_with_tests.exception.EmployeeStorageIsFullException;
+import pro.sky.employee_base_with_tests.exception.SalaryNegativeNumberException;
 
 import java.util.stream.Stream;
 
@@ -65,10 +66,16 @@ public class EmployeeServiceTest {
 
 
     @Test
-    public void addWhenAlreadyExistsTest() {
+    public void addWhenAlreadyAddedTest() {
         Assertions.assertThatExceptionOfType(EmployeeAlreadyAddedException.class)
                 .isThrownBy(() -> employeeService.addEmloyee("Елена", "Тышко", 8, 88000));
         }
+
+    @Test
+    public void addWithSalaryNegativeNumberTest() {
+        Assertions.assertThatExceptionOfType(SalaryNegativeNumberException.class)
+                .isThrownBy(() -> employeeService.addEmloyee("Гы", "Го", 13, -800));
+    }
 
     @Test
     public void removeTest() {
