@@ -68,7 +68,7 @@ import java.util.List;
 
         @ExceptionHandler(EmployeeAlreadyAddedException.class)
         public String employeeAlreadyAddedExceptionHandler(EmployeeAlreadyAddedException e) {
-            return "Сотрудник "+ e.getEmployee().getFullName()+" уже добавлен";
+            return "Сотрудник "+ e.getFullName()+" уже добавлен";
         }
 
         @ExceptionHandler(EmployeeStorageIsFullException.class)

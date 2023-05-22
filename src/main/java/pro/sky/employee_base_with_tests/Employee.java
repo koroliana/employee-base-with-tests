@@ -3,6 +3,8 @@ package pro.sky.employee_base_with_tests;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import pro.sky.employee_base_with_tests.exception.SalaryNegativeNumberException;
 
+import java.util.Objects;
+
 public class Employee {
     @JsonProperty("name")
     private final String firstName;
@@ -29,7 +31,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return firstName + " " + lastName;
+        return firstName + " " + lastName + " (Отдел: " + department + ", зарплата: "+ salary + ")";
     }
     @Override
     public boolean equals(Object other) {
@@ -37,11 +39,12 @@ public class Employee {
             return false;
         }
         Employee employee = (Employee) other;
-        return (firstName.equals(employee.firstName)&&lastName.equals(employee.lastName));
+        return (firstName.equals(employee.firstName)&&lastName.equals(employee.lastName)
+                &&department==employee.getDepartment()&&salary==employee.getSalary());
     }
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(firstName) + java.util.Objects.hash(lastName);
+        return Objects.hash(firstName, lastName, department, salary);
     }
 
     public String getFirstName() {
